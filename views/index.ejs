@@ -1,0 +1,25 @@
+<%- include('partials/header') %>
+<h1>Home</h1>
+
+<form method="GET" action="/products">
+  <input type="text" name="q" placeholder="Search products by name">
+  <select name="supplier">
+    <option value="">-- All suppliers --</option>
+    <% suppliers.forEach(s => { %>
+      <option value="<%= s._id %>"><%= s.name %></option>
+    <% }) %>
+  </select>
+  <button type="submit">Search / Filter</button>
+</form>
+
+<h2>Products</h2>
+<ul>
+  <% products.forEach(p => { %>
+    <li>
+      <strong><%= p.name %></strong> - <%= p.price %> - qty: <%= p.quantity %>
+      <% if(p.supplier){ %> (Supplier: <%= p.supplier.name %>) <% } %>
+    </li>
+  <% }) %>
+</ul>
+
+<%- include('partials/footer') %>
