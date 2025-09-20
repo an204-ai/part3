@@ -1,19 +1,37 @@
 <%- include('../partials/header') %>
+
 <h1>Suppliers</h1>
+
 <% if(currentUser){ %>
   <a href="/suppliers/new">New Supplier</a>
 <% } %>
+
 <ul>
+  <!-- Header row -->
+  <li>
+    <strong style="display: inline-block; width: 150px;">Name</strong>
+    <strong style="display: inline-block; width: 200px;">Address</strong>
+    <strong style="display: inline-block; width: 120px;">Phone</strong>
+    <% if(currentUser){ %>
+      <strong>Actions</strong>
+    <% } %>
+  </li>
+
   <% suppliers.forEach(s => { %>
     <li>
-      <strong><%= s.name %></strong> - <%= s.address %> - <%= s.phone %>
+      <span style="display: inline-block; width: 150px;"><%= s.name %></span>
+      <span style="display: inline-block; width: 200px;"><%= s.address %></span>
+      <span style="display: inline-block; width: 120px;"><%= s.phone %></span>
       <% if(currentUser){ %>
-        <a href="/suppliers/<%= s._id %>/edit">Edit</a>
-        <form action="/suppliers/<%= s._id %>?_method=DELETE" method="POST" style="display:inline">
-          <button>Delete</button>
-        </form>
+        <span>
+          <a href="/suppliers/<%= s._id %>/edit">Edit</a>
+          <form action="/suppliers/<%= s._id %>?_method=DELETE" method="POST" style="display:inline">
+            <button>Delete</button>
+          </form>
+        </span>
       <% } %>
     </li>
   <% }) %>
 </ul>
+
 <%- include('../partials/footer') %>

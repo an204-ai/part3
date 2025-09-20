@@ -1,4 +1,5 @@
 <%- include('../partials/header') %>
+
 <h1>Products</h1>
 
 <form method="GET" action="/products">
@@ -17,15 +18,30 @@
 <% } %>
 
 <ul>
+  <!-- Header row -->
+  <li>
+    <strong style="display: inline-block; width: 150px;">Name</strong>
+    <strong style="display: inline-block; width: 80px;">Price</strong>
+    <strong style="display: inline-block; width: 60px;">Qty</strong>
+    <strong style="display: inline-block; width: 150px;">Supplier</strong>
+    <% if(currentUser){ %>
+      <strong>Actions</strong>
+    <% } %>
+  </li>
+
   <% products.forEach(p => { %>
     <li>
-      <strong><%= p.name %></strong> - <%= p.price %> - qty: <%= p.quantity %>
-      <% if(p.supplier){ %> (Supplier: <%= p.supplier.name %>) <% } %>
+      <span style="display: inline-block; width: 150px;"><%= p.name %></span>
+      <span style="display: inline-block; width: 80px;"><%= p.price %></span>
+      <span style="display: inline-block; width: 60px;"> <%= p.quantity %> </span>
+      <span style="display: inline-block; width: 150px;"><%= p.supplier ? p.supplier.name : '' %></span>
       <% if(currentUser){ %>
-        <a href="/products/<%= p._id %>/edit">Edit</a>
-        <form action="/products/<%= p._id %>?_method=DELETE" method="POST" style="display:inline">
-          <button>Delete</button>
-        </form>
+        <span>
+          <a href="/products/<%= p._id %>/edit">Edit</a>
+          <form action="/products/<%= p._id %>?_method=DELETE" method="POST" style="display:inline">
+            <button>Delete</button>
+          </form>
+        </span>
       <% } %>
     </li>
   <% }) %>

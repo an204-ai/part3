@@ -1,0 +1,26 @@
+<%- include('../partials/header') %>
+
+<h1>Reset Password</h1>
+
+<form method="POST" action="/auth/reset">
+  <!-- ẩn username để controller biết đổi mật khẩu cho user nào -->
+  <input type="hidden" name="username" value="<%= username %>">
+
+  <div>
+    <label>New Password:</label>
+    <input type="password" name="password" placeholder="Enter new password" required>
+  </div>
+
+  <div>
+    <label>Confirm Password:</label>
+    <input type="password" name="confirmPassword" placeholder="Confirm new password" required>
+  </div>
+
+  <button type="submit">Reset Password</button>
+</form>
+
+<!-- Hiển thị lỗi hoặc thông báo thành công -->
+<p style="color:red"><%= error %></p>
+<p style="color:green"><%= success %></p>
+
+<%- include('../partials/footer') %>

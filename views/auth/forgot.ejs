@@ -1,8 +1,14 @@
 <%- include('../partials/header') %>
+
 <h1>Forgot Password</h1>
-<% if(typeof message !== 'undefined'){ %><p><%= message %></p><% } %>
-<form method="POST" action="/auth/forgot">
-  <label>Username: <input name="username" required></label><br>
-  <button type="submit">Find</button>
+
+<form method="POST">
+  <input type="text" name="username" placeholder="Username" required>
+  <input type="email" name="email" placeholder="Email" required>
+  <button>Submit</button>
 </form>
+
+<p style="color:red"><%= error %></p>
+<p style="color:green"><%= success %></p>
+
 <%- include('../partials/footer') %>
